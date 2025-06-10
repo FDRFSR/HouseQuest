@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { uuidv4 } from './App';
+import { generateFamilyCode } from './App';
 
 interface FamilyProps {
   onSelect: (familyId: string, isNew: boolean) => void;
@@ -8,7 +8,7 @@ interface FamilyProps {
 export function FamilyScreen({ onSelect }: FamilyProps) {
   const [code, setCode] = useState('');
   const [step, setStep] = useState<'choose' | 'join' | 'create'>('choose');
-  const [newFamilyId] = useState(() => uuidv4());
+  const [newFamilyId] = useState(() => generateFamilyCode());
 
   if (step === 'choose') {
     return (

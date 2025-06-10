@@ -4,9 +4,9 @@ interface TabProps {
 }
 
 const tabs = [
-  { key: 'main', label: 'Principale' },
-  { key: 'results', label: 'Risultati raggiunti' },
-  { key: 'family', label: 'Famiglia' },
+  { key: 'main', label: '🏠' },
+  { key: 'results', label: '🏆' },
+  { key: 'family', label: '👨‍👩‍👧‍👦' },
 ];
 
 export function TabBar({ selected, onSelect }: TabProps) {
