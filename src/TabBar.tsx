@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 interface TabProps {
   selected: 'main' | 'results' | 'family';
   onSelect: (tab: 'main' | 'results' | 'family') => void;

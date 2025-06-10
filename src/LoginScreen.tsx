@@ -18,7 +18,12 @@ export function LoginScreen({ onLogin }: LoginProps) {
         style={{ padding: 8, fontSize: 18 }}
       />
       <button
-        onClick={() => name.trim() && onLogin(name.trim())}
+        onClick={() => {
+          if (name.trim()) {
+            console.log('LoginScreen: onLogin chiamato con', name.trim());
+            onLogin(name.trim());
+          }
+        }}
         style={{ padding: '8px 24px', fontSize: 18 }}
         disabled={!name.trim()}
       >

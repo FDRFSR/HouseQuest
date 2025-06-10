@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { uuidv4 } from './App';
 
 interface Task {
   id: string;
@@ -92,7 +93,7 @@ export function MainScreen({ userName }: MainScreenProps) {
   function addTask(option: { text: string; room: string }) {
     setTasks([
       ...tasks,
-      { id: crypto.randomUUID(), text: option.text, room: option.room, done: false },
+      { id: uuidv4(), text: option.text, room: option.room, done: false },
     ]);
     setPickerRoom(null);
     setShowPicker(false);

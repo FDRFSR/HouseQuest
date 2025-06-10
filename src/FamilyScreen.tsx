@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { uuidv4 } from './App';
 
 interface FamilyProps {
   onSelect: (familyId: string, isNew: boolean) => void;
@@ -7,6 +8,7 @@ interface FamilyProps {
 export function FamilyScreen({ onSelect }: FamilyProps) {
   const [code, setCode] = useState('');
   const [step, setStep] = useState<'choose' | 'join' | 'create'>('choose');
+  const [newFamilyId] = useState(() => uuidv4());
 
   if (step === 'choose') {
     return (
@@ -22,7 +24,10 @@ export function FamilyScreen({ onSelect }: FamilyProps) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, marginTop: 80 }}>
         <h3>Nuova famiglia creata!</h3>
-        <button onClick={() => onSelect(crypto.randomUUID(), true)} style={{ padding: '8px 24px', fontSize: 18 }}>Continua</button>
+        <button onClick={() => {
+          console.log('Bottone Continua premuto', newFamilyId);
+          onSelect(newFamilyId, true);
+        }} style={{ padding: '8px 24px', fontSize: 18 }}>Continua</button>
       </div>
     );
   }
@@ -39,7 +44,12 @@ export function FamilyScreen({ onSelect }: FamilyProps) {
         style={{ padding: 8, fontSize: 18 }}
       />
       <button
-        onClick={() => code.trim() && onSelect(code.trim(), false)}
+        onClick={() => {
+          if (code.trim()) {
+            console.log('Bottone Unisciti premuto', code.trim());
+            onSelect(code.trim(), false);
+          }
+        }}
         style={{ padding: '8px 24px', fontSize: 18 }}
         disabled={!code.trim()}
       >
